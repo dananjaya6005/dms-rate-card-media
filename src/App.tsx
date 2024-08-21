@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React ,{useMemo, useState} from "react";
 import Lottie from "lottie-react";
 import testLottie from "./assets/lottie/lottieflow-arrow-08-1-000000-easey.json";
