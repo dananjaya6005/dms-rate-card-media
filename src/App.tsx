@@ -43,7 +43,7 @@ const ListOfMedia = [
     title: "Landscape Video",
     specs: "Specefications",
     lottie: media5,
-    price : 5000,
+    price : 150000,
     sub :[],
     optionalFeatures : [
       {
@@ -70,7 +70,7 @@ const ListOfMedia = [
     title: "Intro & Outro",
     specs: "Specefications",
     lottie: media10,
-    price : 20000,
+    price : 10000,
     sub :[],
     optionalFeatures : [],
   },
