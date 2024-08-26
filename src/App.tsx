@@ -36,7 +36,9 @@ const ListOfMedia = [
     lottie: media1,
     price : 85000,
     sub :[],
-    optionalFeatures : [],
+    optionalFeatures : [
+      
+    ],
   },
 
   {
@@ -86,7 +88,7 @@ const ListOfMedia = [
     title: "Drone Video",
     specs: "Specefications",
     lottie: media14,
-    price : 40000,
+    price : 60000,
     sub :[],
     optionalFeatures : [],
   },
@@ -103,7 +105,7 @@ export default function App() {
   const [priceforPhotography, setPriceforPhotography] = useState(20000);
   const [priceforIntro, setPriceforIntro] = useState(10000);
   const [priceforLogo, setPriceforLogo] = useState(25000);
-  const [priceforDrone, setPriceforDrone] = useState(40000);
+  const [priceforDrone, setPriceforDrone] = useState(60000);
   const [submitbtn, setSubmitbtn] = useState(true);
 
 
@@ -158,12 +160,11 @@ export default function App() {
 
   }, [ name , phone , whatsapp , orderReq , customReq])
 
+
+
+
   return (
     <> 
-
-
-
-
     <Toaster />
       <div className="max-w-[1100px] mx-auto py-10 bg-white  min-h-screen flex flex-col">
         <div>
@@ -206,7 +207,8 @@ export default function App() {
 
                
                <Checkbox 
-               defaultChecked={true}
+                disabled={item.title === "Protrait" && priceforLandScape === 0 || item.title === "Landscape Video" && priceforPortait === 0}
+                defaultChecked={true}
                 onCheckedChange={(checked)=>{
                   if(checked){
                     setOrderTotal(orderTotal + item.price)
