@@ -34,7 +34,7 @@ const ListOfMedia = [
     title: "Protrait",
     specs: "Specefications",
     lottie: media1,
-    price : 55000,
+    price : 85000,
     sub :[],
     optionalFeatures : [],
   },
@@ -43,7 +43,7 @@ const ListOfMedia = [
     title: "Landscape Video",
     specs: "Specefications",
     lottie: media5,
-    price : 150000,
+    price : 100000,
     sub :[],
     optionalFeatures : [
       {
@@ -98,12 +98,12 @@ export default function App() {
   const { toast } = useToast()
 
   const [orderTotal, setOrderTotal] = useState(0);
-  const [priceforPortait, setPriceforPortait] = useState(0);
-  const [priceforLandScape, setPriceforLandScape] = useState(0);
-  const [priceforPhotography, setPriceforPhotography] = useState(0);
-  const [priceforIntro, setPriceforIntro] = useState(0);
-  const [priceforLogo, setPriceforLogo] = useState(0);
-  const [priceforDrone, setPriceforDrone] = useState(0);
+  const [priceforPortait, setPriceforPortait] = useState(85000);
+  const [priceforLandScape, setPriceforLandScape] = useState(100000);
+  const [priceforPhotography, setPriceforPhotography] = useState(20000);
+  const [priceforIntro, setPriceforIntro] = useState(10000);
+  const [priceforLogo, setPriceforLogo] = useState(25000);
+  const [priceforDrone, setPriceforDrone] = useState(40000);
   const [submitbtn, setSubmitbtn] = useState(true);
 
 
@@ -124,6 +124,10 @@ export default function App() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
+  const formatNumber = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
 
 
   const handleSubmit = async () => {
@@ -165,7 +169,7 @@ export default function App() {
         <div>
           <div className=" max-[1000px]:scale-90 ">
             <h3 className="text-2xl font-bold  text-[#F05239]">DIGITAL MEDIA STUDIO</h3>
-            <p className="text-[#F05239]">Powered by</p>
+            <p className="text-[#161515]">Powered by</p>
             <img src={dmsLogo} alt="DMS Logo" className="w-18 h-auto " />
           </div>
 
@@ -174,7 +178,7 @@ export default function App() {
           <h6 className="text-zinc-500">Breif</h6>
         </div>
 
-        <div className="flex w-full max-[1000px]:flex-col max-[1000px]:scale-90  max-[1000px]:-mt-20">
+        <div className="flex w-full  max-[1000px]:scale-90  max-[1000px]:-mt-20 max-[1000px]:flex-col-reverse ">
           <div className="w-[60%] max-[1000px]:w-screen py-10  mr-5 rounded-xl shadow-xl ">
             
             {ListOfMedia.map((item , index )=>{
@@ -202,6 +206,7 @@ export default function App() {
 
                
                <Checkbox 
+               defaultChecked={true}
                 onCheckedChange={(checked)=>{
                   if(checked){
                     setOrderTotal(orderTotal + item.price)
@@ -255,10 +260,18 @@ export default function App() {
 
               {item.optionalFeatures.length >0 && (
                 <>
-                     <ToggleGroup defaultValue="Full HD"  onValueChange={(value)=> {
+                     <ToggleGroup
+                     disabled={priceforLandScape > 0 ? false : true}
+                      defaultValue="Full HD"  onValueChange={(value)=> {
 
                         if(priceforLandScape > 0){
                           setOrderReq(orderReq.concat(` / ${value}`))
+                        }
+
+                        if(value === "Full HD"){
+                          setPriceforLandScape(100000)
+                        }else if(value === "4K"){
+                          setPriceforLandScape(priceforLandScape + 15000)
                         }
 
                      } }  className=""  type="single">
@@ -346,53 +359,54 @@ export default function App() {
 
            <p className="text-lg text-zinc-900 font-medium p-7" >Custom requirements</p>
         <Textarea className="w-[94%] h-32  m-5" onChange={(e)=>{ setCustomReq(e.target.value)}} placeholder="" />
+          <p className="m-5 text-zinc-400 text-sm italic ">By submitting this form, you agree that the information provided is accurate and will be used in accordance with our privacy policy</p>
         <Button disabled={submitbtn} onClick={handleSubmit} className="h-12 w-36 mx-5 flex  bg-[#F05239] duration-500 hover:bg-[#e6604b] text-white font-medium" >Submit</Button>
           </div>
-          <div className="w-[40%] max-[1000px]:w-screen max-[1000px]:mt-24 rounded-xl shadow-xl">
+
+          <div className="w-[40%] max-[1000px]:w-screen rounded-xl shadow-xl">
             <p className=" font-bold text-lg p-7  " >Order Summary</p>
             <hr className="mx-6"/>
 
              <div className="my-6" >
                 <div className=" flex my-2 justify-between px-10">
                   <p className="text-lg text-zinc-900 font-medium " >Portrait Video</p>
-                  <p className="text-lg text-zinc-900 font-medium ">{priceforPortait}</p>
+                  <p className="text-lg text-zinc-900 font-medium "> { formatNumber(priceforPortait)} </p>
                 </div>
 
                 <div className=" flex my-2 justify-between px-10">
                   <p className="text-lg text-zinc-900 font-medium " >Landscape Video</p>
-                  <p className="text-lg text-zinc-900 font-medium ">{priceforLandScape}</p>
+                  <p className="text-lg text-zinc-900 font-medium ">{ formatNumber(priceforLandScape)}</p>
                 </div>
 
                 <div className=" flex my-2 justify-between px-10">
                   <p className="text-lg text-zinc-900 font-medium " >Photography</p>
-                  <p className="text-lg text-zinc-900 font-medium ">{priceforPhotography}</p>
+                  <p className="text-lg text-zinc-900 font-medium ">{formatNumber(priceforPhotography)}</p>
                 </div>
 
                 <div className=" flex my-2 justify-between px-10">
                   <p className="text-lg text-zinc-900 font-medium " >Intro & Outro</p>
-                  <p className="text-lg text-zinc-900 font-medium ">{priceforIntro}</p>
+                  <p className="text-lg text-zinc-900 font-medium ">{formatNumber(priceforIntro)}</p>
                 </div>
 
                 <div className=" flex my-2  justify-between px-10">
                   <p className="text-lg text-zinc-900 font-medium " >Logo Animation</p>
-                  <p className="text-lg text-zinc-900 font-medium ">{priceforLogo}</p>
+                  <p className="text-lg text-zinc-900 font-medium ">{formatNumber(priceforLogo)}</p>
               </div>
 
               <div className=" flex my-2 justify-between px-10">
                   <p className="text-lg text-zinc-900 font-medium " >Drone Video</p>
-                  <p className="text-lg text-zinc-900 font-medium ">{priceforDrone}</p>
+                  <p className="text-lg text-zinc-900 font-medium ">{formatNumber(priceforDrone) }</p>
               </div>
 
               <hr className="mx-6 my-6"/>
 
               <div className=" flex my-2 justify-between px-10">
                   <p className="text-lg text-zinc-900= font-medium " >Total</p>
-                  <p className="text-lg text-[#F05239] font-medium ">Rs. { 
-                     priceforDrone + priceforLogo + priceforIntro + priceforPhotography + priceforLandScape + priceforPortait
-                  }</p>
+                  <p className="text-lg text-[#F05239] font-medium ">Rs. {formatNumber(priceforDrone + priceforLogo + priceforIntro + priceforPhotography + priceforLandScape + priceforPortait)}
+                    
+                    </p>
               </div>
               
-                
              </div>
 
 
@@ -412,7 +426,7 @@ export default function App() {
           width={400}
         /> */}
 
-        <div className="flex flex-col items-center my-20">
+        <div className="flex flex-col items-center my-20 max-[1000px]:my-2">
           <img src={techUseimg
           } alt="Tech Use" className="w-[60%] h-auto max-[800px]:w-[100%]" />
         </div>
