@@ -32,7 +32,7 @@ import { Toaster } from "@/components/ui/toaster"
 const ListOfMedia = [
   {
     title: "Protrait",
-    specs: "Specefications",
+    specs: "Specifications",
     lottie: media1,
     price : 85000,
     sub :[],
@@ -43,7 +43,7 @@ const ListOfMedia = [
 
   {
     title: "Landscape Video",
-    specs: "Specefications",
+    specs: "Specifications",
     lottie: media5,
     price : 100000,
     sub :[],
@@ -62,7 +62,7 @@ const ListOfMedia = [
   },
   {
     title: "Photography",
-    specs: "Specefications",
+    specs: "Specifications",
     lottie: media8,
     price : 20000,
     sub :[],
@@ -70,7 +70,7 @@ const ListOfMedia = [
   },
   {
     title: "Intro & Outro",
-    specs: "Specefications",
+    specs: "Specifications",
     lottie: media10,
     price : 10000,
     sub :[],
@@ -78,7 +78,7 @@ const ListOfMedia = [
   },
   {
     title: "Logo Animation",
-    specs: "Specefications",
+    specs: "Specifications",
     lottie: media11,
     price : 25000,
     sub :[],
@@ -86,7 +86,7 @@ const ListOfMedia = [
   },
   {
     title: "Drone Video",
-    specs: "Specefications",
+    specs: "Specifications",
     lottie: media14,
     price : 60000,
     sub :[],
@@ -176,7 +176,7 @@ export default function App() {
 
         <div className="my-10 max-[1000px]:ml-5 max-[1000px]:my-4">
           <h3 className="text-lg font-medium">Instructions</h3>
-          <h6 className="text-zinc-500">Breif</h6>
+          <h6 className="text-zinc-500">Brief</h6>
         </div>
 
         <div className="flex w-full  max-[1000px]:scale-90  max-[1000px]:-mt-20 max-[1000px]:flex-col-reverse ">
